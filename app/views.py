@@ -40,7 +40,7 @@ def add_to_cart(request):
 
 
 def show_cart(request):
-    if request.user.is_autheticated:
+    if request.user.is_authenticated:
         user=request.user
         cart=Cart.objects.filter(user=user)
         return render(request, 'app/addtocart.html',{'carts':cart})
