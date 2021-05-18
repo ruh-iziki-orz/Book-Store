@@ -37,6 +37,9 @@ urlpatterns = [
     path('horror/', views.horror, name='horror'),
     path('horror/<slug:data>', views.horror, name='horrordata'),
 
+    path('manga/', views.manga, name='manga'),
+    path('manga/<slug:data>', views.manga, name='mangadata'),
+
     path('motivation/', views.motivation, name='motivation'),
     path('motivation/<slug:data>', views.motivation, name='motivationdata'),
 

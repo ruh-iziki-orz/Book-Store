@@ -14,11 +14,15 @@ from django.utils.decorators import method_decorator
 #  return render(request, 'app/home.html')
 class ProductView(View):
     def get(self, request):
+        totalitem=0
+        if request.user.is_authenticated:
+            totalitem = len(Cart.objects.filter(user=request.user))
         topwears = Product.objects.filter(category = 'MO')
         bottomwears = Product.objects.filter(category = 'RD')
         mobiles = Product.objects.filter(category = 'H')
+        mangas = Product.objects.filter(category = 'N')
         return render(request, 'app/home.html',
-        {'topwears':topwears,'bottomwears':bottomwears,'mobiles':mobiles})
+        {'topwears':topwears,'bottomwears':bottomwears,'mobiles':mobiles,'mangas':mangas,'totalitem':totalitem})
 
         
 
@@ -170,6 +174,14 @@ def horror(request,data=None):
      mobiles = Product.objects.filter(category = 'H').filter(discounted_price__gt=400)
  return render(request, 'app/horror.html',{'mobiles':mobiles})
 
+def manga(request,data=None):
+ if data == None:
+     mobiles = Product.objects.filter(category = 'N')
+ elif data =='below':
+     mobiles = Product.objects.filter(category = 'N').filter(discounted_price__lt=700)
+ elif data =='above':
+     mobiles = Product.objects.filter(category = 'N').filter(discounted_price__gt=700)
+ return render(request, 'app/manga.html',{'mobiles':mobiles})
 
 def motivation(request,data=None):
  if data == None:

@@ -27,6 +27,7 @@ CATEGORY_CHOICES=(
     ('RD','Dark Romantic'),
     ('H','Pure Horror'),
     ('HC','Horror+Comedy'),
+    ('N','Manga'),
 )
 
 class Product(models.Model):
