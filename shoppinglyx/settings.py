@@ -122,9 +122,12 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'static'
 
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
-MEDIA_URL = '/static/images/medias/'
-MEDIA_ROOT = BASE_DIR / 'static/images/medias'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
 LOGIN_REDIRECT_URL = '/profile'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
