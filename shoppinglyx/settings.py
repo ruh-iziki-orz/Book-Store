@@ -124,7 +124,7 @@ STATIC_ROOT = BASE_DIR / 'static'
 
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = BASE_DIR / 'media/productimg'
 LOGIN_REDIRECT_URL = '/profile'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
