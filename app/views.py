@@ -2,13 +2,16 @@ from os import name
 from django.http.response import JsonResponse
 from django.shortcuts import redirect, render
 from django.views import View
-from .models import Customer, Product, Cart, OrderPlaced
+from .models import Comment, Customer, Product, Cart, OrderPlaced
 from .forms import CustomerRegistrationForm,CustomerProfileForm
 from django.contrib import messages
+from django.views.generic import CreateView
 from django.db.models import Q
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from .forms import CommentForm
+from django.urls import reverse_lazy
 
 # def home(request):
 #  return render(request, 'app/home.html')
@@ -258,3 +261,16 @@ class ProfileView(View):
             messages.success(request,'Congratualations!! Profile Updated Succesfully!!!')
 
         return render(request,'app/profile.html',{'form':form,'active':'btn-primary'})
+
+
+
+@method_decorator(login_required(login_url='/login/'),name='dispatch')
+class AddCommentView(CreateView):
+    model = Comment
+    form_class = CommentForm
+    template_name='app/add_comment.html'
+    def form_valid(self, form):
+        form.instance.product_id = self.kwargs['pk']
+        return super().form_valid(form)
+    
+    success_url = reverse_lazy('home')

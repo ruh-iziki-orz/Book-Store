@@ -1,10 +1,11 @@
+from django.forms import fields, widgets
 from app.models import Customer
 from django import forms
 from django.contrib.auth import password_validation
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm,UsernameField,PasswordChangeForm,PasswordResetForm, SetPasswordForm
 from django.contrib.auth.models import User
 from django.utils.translation import gettext,gettext_lazy as _
-from .models import Customer
+from .models import Comment, Customer
 
 class CustomerRegistrationForm(UserCreationForm):
     password1= forms.CharField(label='Password',widget=forms.PasswordInput(attrs={'class':'form-control'}))
@@ -14,7 +15,7 @@ class CustomerRegistrationForm(UserCreationForm):
         model = User
         fields = ['username','email','password1','password2']
         labels = {'email':'Email'}
-        widget = {'username': forms.TextInput(attrs={'class':'form-control'})}
+        widgets = {'username': forms.TextInput(attrs={'class':'form-control'})}
 
 
 class LoginForm(AuthenticationForm):
@@ -41,4 +42,15 @@ class CustomerProfileForm(forms.ModelForm):
     class Meta:
         model = Customer
         fields= ['name','locality','city','state','zipcode']
-        widget= {'name':forms.TextInput(attrs={'class':'form-control'}),'locality':forms.TextInput(attrs={'class':'form-control'}),'city':forms.TextInput(attrs={'class':'form-control'}),'state':forms.Select(attrs={'class':'form-control'}),'zipcode':forms.NumberInput(attrs={'class':'form-control'})}
+        widgets= {'name':forms.TextInput(attrs={'class':'form-control'}),'locality':forms.TextInput(attrs={'class':'form-control'}),'city':forms.TextInput(attrs={'class':'form-control'}),'state':forms.Select(attrs={'class':'form-control'}),'zipcode':forms.NumberInput(attrs={'class':'form-control'})}
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ('name','body')
+
+        widgets = {
+            'name':forms.TextInput(attrs={'class':'form-control'}),
+            'body':forms.Textarea(attrs={'class':'form-control'}),
+        }

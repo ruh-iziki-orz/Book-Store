@@ -1,0 +1,25 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Horror{% endblock title%}
+{% block main-content %}
+
+<h1>Add Comment to that Product</h1>
+
+
+
+
+<div class="form-group">
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-primary">Post comment</button>
+    </form>
+</div>
+
+
+
+
+
+
+
+{% endblock main-content %}

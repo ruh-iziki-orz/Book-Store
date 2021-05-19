@@ -47,6 +47,27 @@
 
 
    <a href="{% url 'checkout' %}" class="btn btn-danger shadow px-5 py-2 ms-4">Buy Now</a>
+
+    <br>
+    <hr>
+    <a href="{% url 'add_comment' product.pk %}">Add Review</a>
+    <br>
+    <br>
+   <h3>Reviews...</h3>
+   <ul>
+       {% if not product.comments.all %}
+       No reviews yet!!!! 
+       <hr>
+       {% else %}
+       {% for comment in product.comments.all %}
+       <strong>{{comment.name}} - {{comment.date_added}}</strong>
+       <br>
+       {{comment.body}}
+       <hr>
+       {% endfor %}
+       {% endif %}
+   </ul>
+   
    <h5 class="mt-5">Available Offers</h5>
    <ul>
     <li>Bank Offer 5% Unlimited Cashback on Flipkart Axis Bank Credit</li>

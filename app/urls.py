@@ -1,3 +1,4 @@
+from os import name
 from re import template
 from django.urls import path
 from app import views
@@ -5,6 +6,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
 from .forms import LoginForm, MyPasswordChangeForm, MyPasswordResetForm, MySetPasswordForm
+from .views import AddCommentView
 urlpatterns = [
     # path('', views.home),
     path('',views.ProductView.as_view(),name="home"),
@@ -61,4 +63,17 @@ urlpatterns = [
 
     path('registraion/',views.CustomerRegistrationView.as_view(),name="customerregistration"),
     path('checkout/', views.checkout, name='checkout'),
+
+    path('<int:pk>/comment/',AddCommentView.as_view(),name="add_comment"),
+
+
+
+
+
+
+
+
+
+
+
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
