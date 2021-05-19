@@ -123,8 +123,8 @@ STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'static'
 
 
-MEDIA_URL = '/medias/productimg'
-MEDIA_ROOT = BASE_DIR / 'medias/productimg'
+MEDIA_URL = '/static/images/medias/'
+MEDIA_ROOT = BASE_DIR / 'static/images/medias'
 LOGIN_REDIRECT_URL = '/profile'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
