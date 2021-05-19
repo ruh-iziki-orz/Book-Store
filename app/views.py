@@ -20,12 +20,12 @@ class ProductView(View):
         totalitem=0
         if request.user.is_authenticated:
             totalitem = len(Cart.objects.filter(user=request.user))
-        topwears = Product.objects.filter(category = 'MO')
-        bottomwears = Product.objects.filter(category = 'RD')
-        mobiles = Product.objects.filter(category = 'H')
+        motivations = Product.objects.filter(category = 'MO')
+        romantics = Product.objects.filter(category = 'RD')
+        horrors = Product.objects.filter(category = 'H')
         mangas = Product.objects.filter(category = 'N')
         return render(request, 'app/home.html',
-        {'topwears':topwears,'bottomwears':bottomwears,'mobiles':mobiles,'mangas':mangas,'totalitem':totalitem})
+        {'motivations':motivations,'romantics':romantics,'horrors':horrors,'mangas':mangas,'totalitem':totalitem})
 
         
 

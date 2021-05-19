@@ -49,7 +49,7 @@
  <h2>Romantic Books</h2>
  <!-- Slider 1 -->
  <div class="owl-carousel" id="slider1">
-   {% for b in bottomwears %}
+   {% for b in romantics %}
   <a href="{% url 'product-detail' b.id %}" class="btn">
     <div class="item"><img src="{{b.product_image.url}}" alt="" height="200px"><span class="fw-bold">{{b.title}}</span><br><span class="fs-5">Rs. {{b.discounted_price}}</span></div>
   </a>
@@ -98,7 +98,7 @@
  <h2>Motivational Books</h2>
  <!-- Slider 2 -->
  <div class="owl-carousel" id="slider2">
-  {% for tp in topwears %}
+  {% for tp in motivations %}
   <a href="{% url 'product-detail' tp.id %}" class="btn">
     <div class="item"><img src="{{tp.product_image.url}}" alt="" height="200px"><span class="fw-bold">{{tp.title}}</span><br><span class="fs-5">Rs. {{tp.discounted_price}}</span></div>
   </a>
@@ -112,7 +112,7 @@
   <h2>Horror & Thriler Books</h2>
   <!-- Slider 3 -->
   <div class="owl-carousel" id="slider2">
-   {% for m in mobiles %}
+   {% for m in horrors %}
    <a href="{% url 'product-detail' m.id %}" class="btn">
      <div class="item"><img src="{{m.product_image.url}}" alt="" height="200px"><span class="fw-bold">{{m.title}}</span><br><span class="fs-5">Rs. {{m.discounted_price}}</span></div>
    </a>
