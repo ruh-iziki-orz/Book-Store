@@ -62,9 +62,6 @@ def add_to_cart(request):
 
 @login_required(login_url='/login/')
 def show_cart(request):
-    totalitem=0
-    if request.user.is_authenticated:
-        totalitem = len(Cart.objects.filter(user=request.user))
     if request.user.is_authenticated:
         user=request.user
         cart=Cart.objects.filter(user=user)
@@ -74,7 +71,7 @@ def show_cart(request):
             for p in cart_product:
                 tempamount=(p.quantity * p.product.discounted_price)
                 amount+=tempamount
-            return render(request, 'app/addtocart.html',{'carts':cart,'totalamount':amount+70,'amount':amount,'totalitem':totalitem})
+            return render(request, 'app/addtocart.html',{'carts':cart,'totalamount':amount+70,'amount':amount})
         else:
             return render(request,'app/emptycart.html')
 
