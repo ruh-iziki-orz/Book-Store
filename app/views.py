@@ -37,23 +37,17 @@ class ProductView(View):
 
 class ProductDetailView(View):
     def get(self,request,pk):
-        totalitem=0
-        if request.user.is_authenticated:
-            totalitem = len(Cart.objects.filter(user=request.user))
         product = Product.objects.get(pk=pk)
         item_already_in_cart = False
         if request.user.is_authenticated:
             item_already_in_cart=Cart.objects.filter(Q(product = product.id) & Q(user = request.user)).exists()
-        return render(request, 'app/productdetail.html',{'product':product,'item_already_in_cart':item_already_in_cart,'totalitem':totalitem})
+        return render(request, 'app/productdetail.html',{'product':product,'item_already_in_cart':item_already_in_cart})
 
 
 
 
 @login_required(login_url='/login/')
 def add_to_cart(request):
- totalitem=0
- if request.user.is_authenticated:
-    totalitem = len(Cart.objects.filter(user=request.user))   
  user=request.user
  product_id = request.GET.get('prod_id')
  product =Product.objects.get(id=product_id)
@@ -140,28 +134,19 @@ def buy_now(request):
 
 @login_required(login_url='/login/')
 def address(request):
- totalitem=0
- if request.user.is_authenticated:
-    totalitem = len(Cart.objects.filter(user=request.user))
  add=Customer.objects.filter(user=request.user)
- return render(request, 'app/address.html',{'add':add,'active':'btn-primary','totalitem':totalitem})
+ return render(request, 'app/address.html',{'add':add,'active':'btn-primary'})
 
 @login_required(login_url='/login/')
 def orders(request):
-    totalitem=0
-    if request.user.is_authenticated:
-        totalitem = len(Cart.objects.filter(user=request.user))
     op = OrderPlaced.objects.filter(user=request.user)
-    return render(request, 'app/orders.html', {'order_placed':op,'totalitem':totalitem})
+    return render(request, 'app/orders.html', {'order_placed':op})
 
 
 
 
 
 def mobile(request,data=None):
- totalitem=0
- if request.user.is_authenticated:
-    totalitem = len(Cart.objects.filter(user=request.user))   
  if data == None:
      mobiles = Product.objects.filter(category = 'RD')
  elif data == 'Chetan_Bhagat' or data == 'William_Shakespeare':
@@ -170,12 +155,9 @@ def mobile(request,data=None):
      mobiles = Product.objects.filter(category = 'RD').filter(discounted_price__lt=400)
  elif data =='above':
      mobiles = Product.objects.filter(category = 'RD').filter(discounted_price__gt=400)
- return render(request, 'app/mobile.html',{'mobiles':mobiles,'totalitem':totalitem})
+ return render(request, 'app/mobile.html',{'mobiles':mobiles})
 
 def light(request,data=None):
- totalitem=0
- if request.user.is_authenticated:
-    totalitem = len(Cart.objects.filter(user=request.user))
  if data == None:
      mobiles = Product.objects.filter(category = 'RL')
  elif data == 'Chetan_Bhagat':
@@ -184,7 +166,7 @@ def light(request,data=None):
      mobiles = Product.objects.filter(category = 'RL').filter(discounted_price__lt=400)
  elif data =='above':
      mobiles = Product.objects.filter(category = 'RL').filter(discounted_price__gt=400)
- return render(request, 'app/light.html',{'mobiles':mobiles,'totalitem':totalitem})
+ return render(request, 'app/light.html',{'mobiles':mobiles})
 
 def horror(request,data=None):
  if data == None:
@@ -193,31 +175,25 @@ def horror(request,data=None):
      mobiles = Product.objects.filter(category = 'H').filter(discounted_price__lt=400)
  elif data =='above':
      mobiles = Product.objects.filter(category = 'H').filter(discounted_price__gt=400)
- return render(request, 'app/horror.html',{'mobiles':mobiles,'totalitem':totalitem})
+ return render(request, 'app/horror.html',{'mobiles':mobiles})
 
 def manga(request,data=None):
- totalitem=0
- if request.user.is_authenticated:
-    totalitem = len(Cart.objects.filter(user=request.user))
  if data == None:
      mobiles = Product.objects.filter(category = 'N')
  elif data =='below':
      mobiles = Product.objects.filter(category = 'N').filter(discounted_price__lt=700)
  elif data =='above':
      mobiles = Product.objects.filter(category = 'N').filter(discounted_price__gt=700)
- return render(request, 'app/manga.html',{'mobiles':mobiles,'totalitem':totalitem})
+ return render(request, 'app/manga.html',{'mobiles':mobiles})
 
 def motivation(request,data=None):
- totalitem=0
- if request.user.is_authenticated:
-    totalitem = len(Cart.objects.filter(user=request.user))
  if data == None:
      mobiles = Product.objects.filter(category = 'MO')
  elif data =='below':
      mobiles = Product.objects.filter(category = 'MO').filter(discounted_price__lt=400)
  elif data =='above':
      mobiles = Product.objects.filter(category = 'MO').filter(discounted_price__gt=400)
- return render(request, 'app/motivation.html',{'mobiles':mobiles,'totalitem':totalitem})
+ return render(request, 'app/motivation.html',{'mobiles':mobiles})
 
 
 #  def login(request):
@@ -290,9 +266,6 @@ class ProfileView(View):
 
 @method_decorator(login_required(login_url='/login/'),name='dispatch')
 class AddCommentView(CreateView):
-    totalitem=0
-    if request.user.is_authenticated:
-        totalitem = len(Cart.objects.filter(user=request.user))
     model = Comment
     form_class = CommentForm
     template_name='app/add_comment.html'
