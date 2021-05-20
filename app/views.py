@@ -267,12 +267,9 @@ def payment_done(request):
 
 @method_decorator(login_required(login_url='/login/'),name='dispatch')
 class ProfileView(View):
-    totalitem=0
-    if request.user.is_authenticated:
-        totalitem = len(Cart.objects.filter(user=request.user))
     def get(self,request):
         form =CustomerProfileForm()
-        return render(request, 'app/profile.html',{'form':form,'active':'btn-primary','totalitem':totalitem})
+        return render(request, 'app/profile.html',{'form':form,'active':'btn-primary'})
 
     def post(self,request):
         form = CustomerProfileForm(request.POST)
@@ -287,7 +284,7 @@ class ProfileView(View):
             reg.save()
             messages.success(request,'Congratualations!! Profile Updated Succesfully!!!')
 
-        return render(request,'app/profile.html',{'form':form,'active':'btn-primary','totalitem':totalitem})
+        return render(request,'app/profile.html',{'form':form,'active':'btn-primary'})
 
 
 
