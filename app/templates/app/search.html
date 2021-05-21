@@ -10,7 +10,7 @@
 <h3>Here's the result we found</h3>
 <div class="col-sm-9 offset-sm-1">
 {% for op in mangas %}
-   <a href="{% url 'product-detail' m.id %}" class="btn">
+   <a href="{% url 'product-detail' op.id %}" class="btn">
     <div class = "row shadow-sm mb-3">
         <div class="col-sm-2">
             <img src="{{op.product.product_image.url}}" alt="" srcset="" class="img-fluid" height="150" width="150">
