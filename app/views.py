@@ -18,7 +18,7 @@ from django.urls import reverse_lazy
 
 def search(request):
     if request.method == "POST":
-        searched = request.POST('searched')
+        searched = request.POST['searched']
         mangas = Product.objects.filter(title_contains=searched)
         return render(request,'app/seach.html',{'searched':searched,'mangas':mangas})
     else:
