@@ -57,8 +57,8 @@
          </ul>
          <form class="d-flex" method=POST action="{% url 'search' %}">
            {% csrf_token %}
-           <input class="form-control me-2" type="search" placeholder="Full Book Name" aria-label="Search" name="searched">
-           <button class="btn btn-warning" type="submit">Seach</button>
+           <input class="form-control me-2" type="search" placeholder="Book Name" aria-label="Search" name="searched">
+           <button class="btn btn-warning" type="submit">Search</button>
          </form>
          <div>
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
