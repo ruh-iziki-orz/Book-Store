@@ -5,28 +5,37 @@
 {% if searched %}
 <div class="container my-5">
 <div class="row">
-<h1>You seached for {{searched}}</h1>
-<hr>
-<h3>Here's the result we found</h3>
+<h1>Here's the result we found</h1>
+<br>
+<br>
+{% if mangas %}
 <div class="col-sm-9 offset-sm-1">
 {% for op in mangas %}
    <a href="{% url 'product-detail' op.id %}" class="btn">
     <div class = "row shadow-sm mb-3">
         <div class="col-sm-2">
-            <img src="{{op.product_image.url}}" alt="" srcset="" class="img-fluid" height="150" width="150">
+            <img src="{{op.product_image.url}}" alt="" srcset="" class="img-fluid" height="350" width="350">
         </div>
+        <strong>
+        <h5>
         <div class="col-sm-7">
             <p>Product: {{op.title}}</p>
+            <br>
             <p>Discounted Price: Rs. {{op.discounted_price}}</p>
         </div>
+        </h5>
+        </strong>
     </div>
    </a>
    <hr>
 {% endfor %}
 </div>
+{% else %}
+<h3>Sorry no results found...Try for seomething else!!!</h3>
+{% endif %}
 </div>
 </div>
 {% else %}
-<h1>You Forgot to seach</h1>
+<h1>You Forgot to search</h1>
 {% endif %}
 {% endblock main-content %}
