@@ -20,9 +20,9 @@ def search(request):
     if request.method == "POST":
         searched = request.POST['searched']
         mangas = Product.objects.filter(title__contains=searched)
-        return render(request,'app/seach.html',{'searched':searched,'mangas':mangas})
+        return render(request,'app/search.html',{'searched':searched,'mangas':mangas})
     else:
-        return render(request,'app/seach.html',{})
+        return render(request,'app/search.html',{})
 
 
 
