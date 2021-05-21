@@ -16,7 +16,9 @@ A virtual BookStore website using Django,JavaScript and Ajax.
 
 ## Demo
 
-![screenshot](screenshot.png)
+![screenshot](Screenshot1.png)
+![screenshot](Screenshot2.png)
+
 The application is deployed to Heroku and can be accessed through the following link:
 
 [BookStore on Heroku](https://bookstore4713.herokuapp.com/)
