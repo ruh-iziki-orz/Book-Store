@@ -1,0 +1,32 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Search{% endblock title %}
+{% if searched %}
+<div class="container my-5">
+<div class="row">
+<h1>You seached for {{searched}}</h1>
+<hr>
+<h3>Here's the result we found</h3>
+<div class="col-sm-9 offset-sm-1">
+{% for op in mangas %}
+   <a href="{% url 'product-detail' m.id %}" class="btn">
+    <div class = "row shadow-sm mb-3">
+        <div class="col-sm-2">
+            <img src="{{op.product.product_image.url}}" alt="" srcset="" class="img-fluid" height="150" width="150">
+        </div>
+        <div class="col-sm-7">
+            <p>Product: {{op.product.title}}</p>
+            <p>Quantity: {{op.quantity}}</p>
+            <p>Price: {{op.total_cost}}</p>
+        </div>
+    </div>
+   </a>
+   <hr>
+{% endfor %}
+</div>
+</div>
+</div>
+{% else %}
+<h1>You Forgot to seach</h1>
+{% endif %}
+{% endblock main-content %}

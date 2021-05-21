@@ -6,7 +6,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
 from .forms import LoginForm, MyPasswordChangeForm, MyPasswordResetForm, MySetPasswordForm
-from .views import AddCommentView
+from .views import AddCommentView,search
 urlpatterns = [
     # path('', views.home),
     path('',views.ProductView.as_view(),name="home"),
@@ -65,6 +65,8 @@ urlpatterns = [
     path('checkout/', views.checkout, name='checkout'),
 
     path('<int:pk>/comment/',AddCommentView.as_view(),name="add_comment"),
+
+    path('search/',views.search,name="search"),
 
 
 

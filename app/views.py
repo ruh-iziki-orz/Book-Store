@@ -15,6 +15,22 @@ from django.urls import reverse_lazy
 
 # def home(request):
 #  return render(request, 'app/home.html')
+
+def search(request):
+    if request.method == "POST":
+        searched = request.POST('searched')
+        mangas = Product.objects.filter(title_contains=searched)
+        return render(request,'app/seach.html',{'searched':searched,'mangas':mangas})
+    else:
+        return render(request,'app/seach.html',{})
+
+
+
+
+
+
+
+
 class ProductView(View):
     def get(self, request):
         totalitem=0
