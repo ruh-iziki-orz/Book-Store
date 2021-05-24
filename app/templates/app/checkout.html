@@ -23,8 +23,10 @@
   <div class="col-sm-4 offset-sm-1">
     <h4>Select Shipping Address</h4>
     <hr>
-    <form action="/paymentdone">
-      {% for ad in add %}
+     
+      <form action="/paymentdone">
+        {% if ad %}
+        {% for ad in add %}
 
       <div class="card">
         <div class="card-body">
@@ -41,7 +43,15 @@
         <div class="text-end">
           <button type="submit" class="btn btn-warning mt-3 px-5 fw-bold">Continue</button>
         </div>
+        {% else %}
+        <h5>You have not added any adress</h5>
+        {% endif %}
       </form>
+      <br>
+      <br>
+      <a href="{% url 'profile' %}">Click me to add new address</a>
+
+
     </div>
   </div>
 </div>
